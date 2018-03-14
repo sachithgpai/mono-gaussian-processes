@@ -62,6 +62,7 @@ transformed data {
     
     
     real delta=1e-5;
+    real v2 = 0.000001;
     
     for (n in 1:N) x_tot[n] = x[n];
     for (n in 1:N_g) x_tot[N + n] = x_g[n];
@@ -69,15 +70,15 @@ transformed data {
     
     for (n in 1:N_g) x_g_tot[n] = x_g[n];
     for (n in 1:N_g) x_g_tot[N_g + n] = x_g[n];
-    
+
     
 }
 
 parameters {
-    real<lower=0.0000001> rho;
-    real<lower=0.0000001> alpha;
-    real<lower=0.0000001> rho_g;
-    real<lower=0.0000001> alpha_g;
+    real<lower=0.001> rho;
+    real<lower=0.001> alpha;
+    real<lower=0.001> rho_g;
+    real<lower=0.001> alpha_g;
     vector[N_tot] eta;
     vector[N_g+N_g] eta_g;
     real a;
@@ -108,6 +109,8 @@ transformed parameters{
 }
 
 model {    
+	a ~ normal(0, 1);
+	b ~ normal(0, 1);
     rho ~ inv_gamma(5,5);
     alpha ~ normal(0, 1);
     eta ~ normal(0, 1);
@@ -120,6 +123,6 @@ model {
     
     for(i in 1:N_g){
         target+=log((1-inv_logit(m[i]/v))*(1-inv_logit(f[N+i]/v)) + inv_logit(m[i]/v)*inv_logit(f[N+i]/v));
-        target+= log((1-inv_logit(m_m[i]/v))*(1-inv_logit(m[N_g+i]/v)) + inv_logit(m_m[i]/v)*inv_logit(m[N_g+i]/v));
+        target+= log((1-inv_logit(m_m[i]/v2))*(1-inv_logit(m[N_g+i]/v2)) + inv_logit(m_m[i]/v2)*inv_logit(m[N_g+i]/v2));
     }
 }

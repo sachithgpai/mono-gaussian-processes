@@ -77,13 +77,13 @@ transformed data {
 }
 
 parameters {
-    real<lower=0.00001> rho;
-    real<lower=0.00001> alpha;
-    real<lower=0.00001> rho_g;
-    real<lower=0.00001> alpha_g;
+    real<lower=0.001> rho;
+    real<lower=0.001> alpha;
+    real<lower=0.001> rho_g;
+    real<lower=0.001> alpha_g;
     vector[N_tot] eta;
     vector[N_g+N_g] eta_g;   
-    real<lower=0.000001> sigma;
+    real<lower=0.001> sigma;
     real a;
     real b;
     

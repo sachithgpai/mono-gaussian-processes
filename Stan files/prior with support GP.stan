@@ -74,10 +74,10 @@ transformed data {
 }
 
 parameters {
-    real<lower=0.0001,upper = 5> rho;
-    real<lower=0.0001,upper = 5> alpha;
-    real<lower=0.0001,upper = 5> rho_g;
-    real<lower=0.0001,upper = 5> alpha_g;
+    real<lower=0.0001> rho;
+    real<lower=0.0001> alpha;
+    real<lower=0.0001> rho_g;
+    real<lower=0.0001> alpha_g;
     vector[N_tot] eta;
     vector[N_g+N_g] eta_g;
 }
@@ -102,11 +102,11 @@ transformed parameters{
 model {    
     rho ~ inv_gamma(5,5);
     alpha ~ inv_gamma(1,1);//normal(0, 1);
-    eta ~ inv_gamma(1,1);//normal(0, 1);
+    eta ~ normal(0, 1);
     
     rho_g ~ inv_gamma(5,5);
     alpha_g ~ inv_gamma(1,1);//normal(0, 1);
-    eta_g ~ inv_gamma(1,1);//normal(0, 1);    
+    eta_g ~ normal(0, 1);    
 
 	//m_m ~ bernoulli_logit(m[(N_g+1):(N_g+N_g)]./v);
     
