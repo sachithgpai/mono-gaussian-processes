@@ -93,7 +93,7 @@ def evaluate(data_dict):
 	
 	while (it<100):					# Hoping to restart the sim if initialization fails, will make 100 tries
 		try:
-			fit = gp_model.sampling(data=data_dict,iter=2000,chains=2)
+			fit = gp_model.sampling(data=data_dict,iter=2000,chains=1)
 			break
 		except RuntimeError:
 			print('INIT_FAILED')
