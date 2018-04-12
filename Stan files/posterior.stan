@@ -42,8 +42,8 @@ transformed data {
 }
 
 parameters {
-    real<lower=0> rho;
-    real<lower=0> alpha;
+    real<lower=0.000001> rho;
+    real<lower=0.000001> alpha;
     vector[N_tot] eta;
     real<lower=0.000001> sigma;
 }

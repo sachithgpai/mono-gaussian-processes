@@ -60,7 +60,7 @@ transformed data {
     int<lower=1> N_tot = N + N_prm + N_g;
     vector[N_tot] mu;
     vector[N_g+N_g] mu_m;
-    real delta=1e-4;
+    real delta=1e-8;
     real x_tot[N_tot];
     real x_g_tot[N_g+N_g];
     
@@ -77,10 +77,10 @@ transformed data {
 }
 
 parameters {
-    real<lower=0.00001> rho;
-    real<lower=0.00001> alpha;
-    real<lower=0.00001> rho_g;
-    real<lower=0.00001> alpha_g;
+    real<lower=0.000001> rho;
+    real<lower=0.000001> alpha;
+    real<lower=0.000001> rho_g;
+    real<lower=0.000001> alpha_g;
     vector[N_tot] eta;
     vector[N_g+N_g] eta_g;   
     real<lower=0.000001> sigma;
