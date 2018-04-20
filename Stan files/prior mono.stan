@@ -49,7 +49,7 @@ data {
 transformed data {
     int<lower=1> N_tot = N + N_g;
     vector[N_tot] mu;
-    real delta=1e-5;
+    real delta=1e-8;
     real x_tot[N_tot];
     
     

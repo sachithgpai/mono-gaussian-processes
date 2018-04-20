@@ -61,7 +61,7 @@ transformed data {
     real x_g_tot[N_g+N_g];                                // input to support GP , use same range of points used for derivative eval
     vector[N_g+N_g] mu_m;
     
-    real delta=1e-5;
+    real delta=1e-8;
     
     for (n in 1:N) x_tot[n] = x[n];
     for (n in 1:N_g) x_tot[N + n] = x_g[n];
@@ -74,10 +74,10 @@ transformed data {
 }
 
 parameters {
-    real<lower=0.0001> rho;
-    real<lower=0.0001> alpha;
-    real<lower=0.0001> rho_g;
-    real<lower=0.0001> alpha_g;
+    real<lower=0.000001> rho;
+    real<lower=0.000001> alpha;
+    real<lower=0.000001> rho_g;
+    real<lower=0.000001> alpha_g;
     vector[N_tot] eta;
     vector[N_g+N_g] eta_g;
 }
