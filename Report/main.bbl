@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{CaCh06}
+Carl~Edward Rasmussen and Christopher K.~I. Williams.
+\newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
+  and Machine Learning)}.
+\newblock The MIT Press, 2006.
+
+\bibitem{JaaAki10}
+Jaakko Riihimäki and Aki Vehtari.
+\newblock Gaussian processes with monotonicity information.
+\newblock 9:645--652, 01 2010.
+
+\bibitem{SoMuLe03}
+Ercan Solak, Roderick Murray-Smith, W.E. Leithead, Douglas Leith, and C.E.
+  Rasmussen.
+\newblock Derivative observations in gaussian process models of dynamic
+  systems.
+\newblock 16, 02 2003.
+
+\end{thebibliography}

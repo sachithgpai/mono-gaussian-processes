@@ -1,0 +1,50 @@
+\section{Related Works}
+\subsection{Gaussian Processes}
+We can model a Gaussian process regression as a stochastic process with input $X$, evaluating to the underlying latent function $f$, to which the noise variance is added to form the obseved output $Y$.
+\begin{align*}
+(\Y|\X) 	&\sim p(\Y|f) p(f|\X)\\
+	   		&\sim \mathcal{N}\big(0,\sigma^2\I\big) \mathcal{N}\big(m(\X),k(\X,\X)\big)\\
+	   		&\sim  \mathcal{N}\big(m(\X),k(\X,\X)+\sigma^2\I\big)
+\end{align*} 
+To make predictions $f^*$ for new input points $X^*$ we have the following joint distribution,
+
+\begin{align*}
+\begin{bmatrix} \Y \\ f^* \end{bmatrix}
+ \sim
+ \mathcal{N}
+ \begin{pmatrix}
+  0,
+  \begin{bmatrix}
+  	K(\X,\X) & K(\X,\X^*)\\
+  	K(\X^*,\X) & K(\X^*,\X^*)
+  \end{bmatrix}
+ \end{pmatrix} 
+\end{align*}
+
+The conditional distribution of the prediction follows the normal form,
+\begin{align*}
+f^*|\X^*,\X,f \sim \mathcal{N}\Big( & K(\X^*,\X)\big(K(\X,\X)+\sigma^2\I\big)^{-1}\Y,\\
+								  & K(\X^*,\X^*)-K(\X^*,\X)\big(K(\X,\X)+\sigma^2\I\big)^{-1}K(\X,\X^*)\Big)
+\end{align*}
+
+\subsection{Gaussian Process derivatives}
+Differentiation is a linear operator due to which the derivative of a GP also remains gaussian. The derivative information can be hence be incorporated into the GP model. The RBF covariance function incorporating the derivative information is has the form,
+\begin{align*}
+Cov\big[f^{(i)},f^{(j)}\big] = \eta^2 exp&\bigg(-\frac{1}{2}\sum_{d=1}^D \rho_d^{-2}\big(x_d^{(i)}-x_d^{(j)}\big)^2\bigg)\\
+Cov\Bigg[\frac{\partial f^{(i)}}{\partial x_g^{(i)}},f^{(j)}\Bigg] = \eta^2 exp&\Bigg(-\frac{1}{2}\sum_{d=1}^{D}\rho_d^{-2}\big(x_d^{(i)}-x_d^{(j)}\big)^2\Bigg)\bigg(-\rho_g^{-2}\big(x_g^{(i)}-x_g^{(j)}\big)\bigg) \\
+Cov\Bigg[\frac{\partial f^{(i)}}{\partial x_g^{(i)}},\frac{\partial f^{(j)}}{\partial x_h^{(j)}}\Bigg] = \eta^2 exp&\Bigg(-\frac{1}{2}\sum_{d=1}^{D}\rho_d^{-2}\big(x_d^{(i)}-x_d^{(j)}\big)^2\Bigg) \\ 
+& \rho_g^{-2}\bigg(\delta_{gh}-\rho_h^{-2}\big(x_h^{(i)}-x_h^{(j)}\big)\big(x_g^{(i)}-x_g^{(j)}\big)\bigg)
+\end{align*}
+
+\subsection{Monotonicity using derivative information}
+Using the derivative information we can enforce a monotonicity constraint by using sigmoidal likelihood for the derivative observations. A set of M points($\X_{\partial}$) over the input space are choosen and monotonicity constraint is enforced over those points instead of evaluating the derivative over the whole input space. 
+\begin{align*}
+p\Bigg(\begin{bmatrix} f \\ f_{\partial} \end{bmatrix} \Bigg| \begin{bmatrix} \Y \\ \Y_{\partial}\end{bmatrix} \Bigg) = 
+\frac{1}{C}\ p\Bigg(\begin{bmatrix} f \\ f_{\partial}\end{bmatrix} \Bigg| \begin{bmatrix} \X \\ \X_{\partial}\end{bmatrix} \Bigg) p(\Y|f)p(\Y_{\partial}|f_{\partial})
+\end{align*}
+The last probability terms acts as the derviative likelihood driving function values without monotonicity to a low probability. The new derivative has the form,
+\begin{align*}
+p(\Y_{\partial}|f_{\partial}) = \prod_{i=1}^{M}\phi\bigg(m f_{\partial}^{(i)} \frac{1}{v}\bigg)
+\end{align*}
+where M is the number of psuedo derivative points, $\phi$ is a sigmoidal probability function, $m$ is the sign of the derivative that we are trying to enforce and the parameter $v$ controls the steepness of the sigmoidal function.
+
