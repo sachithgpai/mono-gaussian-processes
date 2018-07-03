@@ -38,13 +38,13 @@ Cov\Bigg[\frac{\partial f^{(i)}}{\partial x_g^{(i)}},\frac{\partial f^{(j)}}{\pa
 
 \subsection{Monotonicity using derivative information}
 Using the derivative information we can enforce a monotonicity constraint by using sigmoidal likelihood for the derivative observations. A set of M points($\X_{\partial}$) over the input space are choosen and monotonicity constraint is enforced over those points instead of evaluating the derivative over the whole input space. 
-\begin{align*}
+\begin{align}
 p\Bigg(\begin{bmatrix} f \\ f_{\partial} \end{bmatrix} \Bigg| \begin{bmatrix} \Y \\ \Y_{\partial}\end{bmatrix} \Bigg) = 
-\frac{1}{C}\ p\Bigg(\begin{bmatrix} f \\ f_{\partial}\end{bmatrix} \Bigg| \begin{bmatrix} \X \\ \X_{\partial}\end{bmatrix} \Bigg) p(\Y|f)p(\Y_{\partial}|f_{\partial})
-\end{align*}
-The last probability terms acts as the derviative likelihood driving function values without monotonicity to a low probability. The new derivative has the form,
-\begin{align*}
-p(\Y_{\partial}|f_{\partial}) = \prod_{i=1}^{M}\phi\bigg(m f_{\partial}^{(i)} \frac{1}{v}\bigg)
-\end{align*}
-where M is the number of psuedo derivative points, $\phi$ is a sigmoidal probability function, $m$ is the sign of the derivative that we are trying to enforce and the parameter $v$ controls the steepness of the sigmoidal function.
+\frac{1}{C}\ p\Bigg(\begin{bmatrix} f \\ f_{\partial}\end{bmatrix} \Bigg| \begin{bmatrix} \X \\ \X_{\partial}\end{bmatrix} \Bigg) p(\Y|f)p(\Y_{\partial}|f_{\partial}) \label{jointdens}
+\end{align}
+The last probability term acts as the derviative likelihood driving function values without monotonicity to a low probability. The derivative likelihood has the form,
+\begin{align}
+p(\Y_{\partial}|f_{\partial}) = \prod_{i=1}^{M}\phi\bigg(m f_{\partial}^{(i)} \frac{1}{v}\bigg) \label{linkfunc}
+\end{align}
+where M is the number of psuedo derivative points, $\phi$ is a sigmoidal link function, $m$ is the latent derivative function which gives us the sign of dervivative that we are trying to enforce and the parameter $v$ controls the steepness of the sigmoidal link function.
 

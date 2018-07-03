@@ -1,5 +1,14 @@
 \section{Unimodality constraint using Monotonicity}
-Using monotonicity constraints shown above, we can model unimodality by modeling a latent parameter symbolizing the mode and changing the enfocrced sign of the derivative across it. For our experiments we performed tried three models enforcing unimodality and compared it against the normal GP model. Three methods for enforce unimodality are were designed as shown below.
+The latent derivative function $m$ in equation \ref{linkfunc} can be modeled as an input dependant function which can be used to enforce shape constraints. The unimodality information can be modelled by a using parameteric monotonic function to represent the derivative information $m$. The primary role of the monotonic derivative function model would be to learn the mode of the data accurately, where the sign of the derivative would flip. 
 
-\subsection{Using a linear function to model the sign of derivative}
-Using a linear line parameterized by the slope and intercept parameters to model the derivative information.
+We experimented with three different models for the latent derivative function:
+\begin{enumerate}
+	\item Linear model of the form $m(x)=ax+b$
+	\item A zero mean Gaussian process of the form $m(x)=GP(0,k_m(x,x))$
+	\item A linear mean Gaussian process $m(x)=GP(ax+b,k_m(x,x))$ 
+\end{enumerate}
+
+
+
+
+
