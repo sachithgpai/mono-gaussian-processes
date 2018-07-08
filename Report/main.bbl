@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{stanpaperref}
+Bob Carpenter, Andrew Gelman, Matthew Hoffman, Daniel Lee, Ben Goodrich,
+  Michael Betancourt, Marcus Brubaker, Jiqiang Guo, Peter Li, and Allen
+  Riddell.
+\newblock Stan: A probabilistic programming language.
+\newblock {\em Journal of Statistical Software, Articles}, 76(1):1--32, 2017.
+
 \bibitem{CaCh06}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.
 \newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
